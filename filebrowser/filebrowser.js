@@ -6,6 +6,8 @@ fs = require("fs");
 my_http.createServer(function(request,response){
     var my_url = url.parse(request.url);
 	var my_path = my_url.pathname;
+
+    // Try to access the file.
 	path.exists(my_path,function(exists){
 		if(!exists){
 			response.writeHeader(404, {"Content-Type": "text/plain"});
@@ -15,6 +17,8 @@ my_http.createServer(function(request,response){
 		else{
             fs.stat(my_path, function(err, stats) {
                 if (err) throw err;
+
+                // if the path is a directory, build a link per child and display.
                 else if(stats.isDirectory()) {
                     fs.readdir(my_path, function(err, files) {
                         response.writeHeader(500, {"Content-Type": "text/html"});
@@ -30,6 +34,7 @@ my_http.createServer(function(request,response){
                     });
                 }
                 else {
+                    // otherwise, display the file.
                     fs.readFile(my_path, "binary", function(err, file) {
                          if(err) {
                              response.writeHeader(500, {"Content-Type": "text/plain"});
