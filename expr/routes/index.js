@@ -4,13 +4,6 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
+  res.render('index', { title: 'Meatcar\'s Home', log: 'log' })
 };
 
-/*
- * GET home page.
- */
-
-exports.blog = function(req, res){
-  res.render('index', { title: req.params.id })
-};
