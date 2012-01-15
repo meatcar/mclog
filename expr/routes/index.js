@@ -2,18 +2,25 @@
 /*
  * GET home page.
  */
-
 exports.index = function(req, res){
-  res.render('index', { title: 'Meatcar\'s Home', log: 'log' })
+    res.render('index', { 
+        title: 'Meatcar\'s Home', 
+        log: 'log' 
+    })
 };
 
 /*
- * GET log page. Display a list of logs
+ * GET logs 
  */
-
 exports.log = function(req, res){
     if (req.params.id)
-      res.render('log', { title: req.params.id })
+    {
+        // display a specific log page
+        res.render('log', { title: req.params.id })
+    }
     else    
-      res.render('log', { title: 'no id'})
+    {
+        // display a list of previous logs
+        res.render('log', { title: 'no id'})
+    }
 };
