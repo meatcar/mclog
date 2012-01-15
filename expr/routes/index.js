@@ -23,6 +23,10 @@ exports.log = function(req, res){
         var log_path = logsdir + req.params.logname + '.markdown'; 
 
         fs.readFile( log_path, 'utf8', function(err, data) {
+            if (err) {
+                console.log(err);
+                return;
+            }
             res.render('log', { 
                 title: req.params.logname,
                 log: md(data)
@@ -33,10 +37,14 @@ exports.log = function(req, res){
     else    
     {
         fs.readdir(logsdir, function(err, files) {
-            if (err) throw err;
+            if (err) {
+                console.log(err);
+                return;
+            }
             for (var file in files) {
                 files[file] = files[file].slice(0, 0 - '.markdown'.length);
             }
+            files.sort();
             res.render('logs', { 
                 title: 'logs', 
                 logs: files
