@@ -1,0 +1,63 @@
+Tutorial
+-------
+TA: Rija (rija.javed@utoronto.ca)
+=======
+
+Defining n!
+
+    factorial (n) :
+        if n == 0 : 1
+        else n * factorial(n-1)
+
+    (define (fact n)
+        (if (= n 0) 1
+        (* n (facet (- n 1))))
+    )
+
+Summing all the elements in a list
+
+    (define (sum n)
+        (if (null? n) 0
+        (+ (car n) (sum (cdr n))))
+    )
+
+Class
+-----
+Scheme intro contd.
+=====
+
+####Conditionals 
+
+    (if (conditional) then else)
+
+####Cond
+
+    (cond
+        (predicate1 expr {expr})
+        (predicate2 expr {expr})
+        (predicate3 expr {expr})
+        (predicate4 expr {expr})
+        (else expr {expr}))
+
+    (define (member atm lis)
+    (cond
+        ((null? lis) #f)
+        ((eq? atm (car lis)) #t)
+        (else (member atm (cdr lis)))
+    ))
+
+    (define (equalsimp lis1 lis2)
+    (cond 
+        ((null? lis1) (null? lis2))
+        ((null? lis2) #f)
+        ((eq? (car lis1) (car lis2))
+            (equalsimp (cdr lis1) (cdr lis2)))
+        (else #f)
+    ))
+
+#### map
+
+    (map abs '(1 2 -3 4))
+    applies abs to every element in the list.
+
+vim: set ft=markdown :

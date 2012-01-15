@@ -1,3 +1,6 @@
+var fs = require("fs");
+var path = require("path");
+var md = require("node-markdown").Markdown;
 
 /*
  * GET home page.
@@ -13,14 +16,31 @@ exports.index = function(req, res){
  * GET logs 
  */
 exports.log = function(req, res){
-    if (req.params.id)
+    var logsdir = '/home/meatcar/dev/node/expr/public/log/';
+    // display a specific log page
+    if (req.params.logname)
     {
-        // display a specific log page
-        res.render('log', { title: req.params.id })
+        var log_path = logsdir + req.params.logname + '.markdown'; 
+
+        fs.readFile( log_path, 'utf8', function(err, data) {
+            res.render('log', { 
+                title: req.params.logname,
+                log: md(data)
+            });
+        });
     }
+    // display a list of previous logs
     else    
     {
-        // display a list of previous logs
-        res.render('log', { title: 'no id'})
+        fs.readdir(logsdir, function(err, files) {
+            if (err) throw err;
+            for (var file in files) {
+                files[file] = files[file].slice(0, 0 - '.markdown'.length);
+            }
+            res.render('logs', { 
+                title: 'logs', 
+                logs: files
+            });
+        });
     }
 };
