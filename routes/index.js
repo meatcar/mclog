@@ -7,7 +7,7 @@ var md = require("node-markdown").Markdown;
  */
 exports.index = function(req, res){
     res.render('index', { 
-        title: 'Meatcar\'s Home', 
+        title: 'this page', 
         log: 'log' 
     })
 };
