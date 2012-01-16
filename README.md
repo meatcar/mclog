@@ -7,8 +7,8 @@ Instalation
 -----------
 To get started, you need 
 
-* [node.js](nodejs.org)
-* [npm](npmjs.org/doc/README.html)
+* [node.js](http://nodejs.org)
+* [npm](http://npmjs.org/doc/README.html)
 
 Once you have those installed, just run the following:
 

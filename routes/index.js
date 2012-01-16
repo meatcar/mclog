@@ -16,7 +16,7 @@ exports.index = function(req, res){
  * GET logs 
  */
 exports.log = function(req, res){
-    var logsdir = '/home/meatcar/dev/node/expr/public/log/';
+    var logsdir = path.join(process.cwd(), '/public/log/');
     // display a specific log page
     if (req.params.logname)
     {
